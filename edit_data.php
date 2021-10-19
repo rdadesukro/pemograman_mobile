@@ -1,8 +1,7 @@
 <?php
 if($_SERVER['REQUEST_METHOD']=='POST') {
   require_once 'koneksi.php'; 
-  header('Content-Type: application/json');
-
+  
 
    $response = array();
    $nama = addslashes(trim($_POST['nama']));
@@ -14,21 +13,25 @@ if($_SERVER['REQUEST_METHOD']=='POST') {
 $query1 = "UPDATE nama_tamus SET nama='$nama'  WHERE id='$id'";
 
 	          
-  
-     if(mysqli_query($konek,$query1)) {
-       $response["kode"] = "1";
-       $response["message"] = "Sukses Ganti Nomor";
-       echo json_encode($response,JSON_PRETTY_PRINT);
+     if(mysqli_query($connect,$query1)) {
+       $response = array(
+        'status' => 1,
+        'message' =>'Success');           
      } else {
-       $response["kode"] = "0";
-       $response["message"] = "gagal edit data";
-       echo json_encode($response,JSON_PRETTY_PRINT);
+      $response = array(
+        'status' => 0,
+        'message' =>'Gagal');        
      }
 	
-       mysqli_close($konek);
+       mysqli_close($connect);
 
 } else {
-  echo json_encode(array("kode" => 0, "pesan"=>"method salah"),JSON_PRETTY_PRINT);
+  $response = array(
+    'status' => 0,
+    'message' =>'Method salah');      
 }
+header('Content-Type: application/json');
+echo json_encode($response)
+?>
 
 
