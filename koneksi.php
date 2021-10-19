@@ -1,6 +1,19 @@
-<?php
-	include 'config.php';
-	$konek = new Mysqli(DB_HOST, DB_USER, DB_PASS, DB_NAME) or die(Mysqli_errno());
+<?php
 
- ?>
-
+	
+	
+$hostname = "localhost";
+$database = "nikahan";
+$username = "root";
+$password = "";
+$connect = mysqli_connect($hostname, $username, $password, $database);
+// script cek koneksi   
+if (!$connect) {
+    die("Koneksi Tidak Berhasil: " . mysqli_connect_error());
+}
+
+
+ ?>
+
+
+

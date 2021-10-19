@@ -3,25 +3,33 @@
 
 if($_SERVER['REQUEST_METHOD']=='POST') {
 require_once 'koneksi.php'; 
-header('Content-Type: application/json');
-
 
 $query = "SELECT * FROM `nama_tamus`";
-$result = mysqli_query($konek,$query);
-$array = array();
+$result = mysqli_query($connect,$query);
 
-while ($row  = mysqli_fetch_assoc($result))
+while($row = mysqli_fetch_object($result))
 {
-	$array[] = $row; 
-}
-
-echo ($result) ? 
-json_encode(array("kode" => 1, "result"=>$array),JSON_PRETTY_PRINT) :
-json_encode(array("kode" => 0, "pesan"=>"data tidak ditemukan"));
+   $data[] = $row;
+}   
+ 
+    if($data){
+              $response = array(
+               'status' => 1,
+               'message' =>'Success',
+               'data' => $data);               
+    }else {
+                $response=array(
+               'status' => 0,
+               'message' =>'No Data Found');
+    }
 
 
 } else {
-  echo json_encode(array("kode" => 0, "pesan"=>"method salah"),JSON_PRETTY_PRINT);
+  $response=array(
+    'status' => 0,
+    'message' =>'Method salah');
 }
+header('Content-Type: application/json');
+echo json_encode($response);
 
-
+?>
