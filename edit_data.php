@@ -3,23 +3,24 @@ if($_SERVER['REQUEST_METHOD']=='POST') {
   require_once 'koneksi.php'; 
   
 
-   $response = array();
-   $nama = addslashes(trim($_POST['nama']));
-	 $id = addslashes(trim($_POST['id']));
+  $response = array();
+  $nama_tamu = addslashes(trim($_POST['nama_tamu']));
+  $alamat = addslashes(trim($_POST['alamat']));
+  $no_telpon = addslashes(trim($_POST['no_telpon']));
+	$id = addslashes(trim($_POST['id']));
+  
 
-   //var_dump($nama." ".$id);
    
-   
-$query1 = "UPDATE nama_tamus SET nama='$nama'  WHERE id='$id'";
+$query1 = "UPDATE tamu SET nama_tamu='$nama_tamu',alamat='$alamat',no_telpon='$no_telpon'  WHERE id='$id'";
 
 	          
      if(mysqli_query($connect,$query1)) {
        $response = array(
-        'status' => 1,
+        'kode' => "1",
         'message' =>'Success');           
      } else {
       $response = array(
-        'status' => 0,
+        'kode' => "0",
         'message' =>'Gagal');        
      }
 	
@@ -27,7 +28,7 @@ $query1 = "UPDATE nama_tamus SET nama='$nama'  WHERE id='$id'";
 
 } else {
   $response = array(
-    'status' => 0,
+    'kode' => "0",
     'message' =>'Method salah');      
 }
 header('Content-Type: application/json');

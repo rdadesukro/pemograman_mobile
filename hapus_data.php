@@ -6,10 +6,10 @@
 
     $response = array();
   	$id = addslashes(trim($_POST['id']));
-    $query1 = "DELETE FROM `nama_tamus` WHERE `nama_tamus`.`id` = '$id'";
+    $query1 = "DELETE FROM `tamu` WHERE id = '$id'";
 	          
   
-     if(mysqli_query($konek,$query1)) {
+     if(mysqli_query($connect,$query1)) {
        $response["kode"] = "1";
        $response["message"] = "Sukses Hapus Data";
        echo json_encode($response,JSON_PRETTY_PRINT);
@@ -19,4 +19,5 @@
        echo json_encode($response,JSON_PRETTY_PRINT);
      }
 	
-       mysqli_close($konek);
+       mysqli_close($connect);
+       ?>

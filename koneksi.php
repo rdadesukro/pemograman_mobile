@@ -3,7 +3,7 @@
 	
 	
 $hostname = "localhost";
-$database = "nikahan";
+$database = "db_undangan";
 $username = "root";
 $password = "";
 $connect = mysqli_connect($hostname, $username, $password, $database);
@@ -11,7 +11,6 @@ $connect = mysqli_connect($hostname, $username, $password, $database);
 if (!$connect) {
     die("Koneksi Tidak Berhasil: " . mysqli_connect_error());
 }
-
 
  ?>
 

@@ -1,10 +1,10 @@
 
 <?php 
 
-if($_SERVER['REQUEST_METHOD']=='POST') {
+if($_SERVER['REQUEST_METHOD']=='GET') {
 require_once 'koneksi.php'; 
 
-$query = "SELECT * FROM `nama_tamus`";
+$query = "SELECT * FROM `tamu`";
 $result = mysqli_query($connect,$query);
 
 while($row = mysqli_fetch_object($result))
